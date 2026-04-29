@@ -12,10 +12,10 @@ export default function Home() {
   const [text, setText] = useState("")
 
   function slowFunction(num) {
-    console.log("slow function running...")
-    for(let i = 0; i < 1000000000; i++) {}
-    return num * 2
-  }
+  console.log("Slow function running...")
+  for (let i = 0; i < 1000000; i++) {} // 1 million, 1 billion nahi
+  return num * 2
+}
 
   const result = useMemo(() => {
     return slowFunction(count)
