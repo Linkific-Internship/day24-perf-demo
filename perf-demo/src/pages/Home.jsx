@@ -11,15 +11,10 @@ export default function Home() {
   const [count, setCount] = useState(0)
   const [text, setText] = useState("")
 
-  function slowFunction(num) {
-  console.log("Slow function running...")
-  for (let i = 0; i < 1000000; i++) {} // 1 million, 1 billion nahi
-  return num * 2
-}
 
-  const result = useMemo(() => {
-    return slowFunction(count)
-  }, [count])
+const result = useMemo(() => {
+  return count * count // simple squaring
+}, [count])
 
   const handleClick = useCallback(() => {
   console.log("Button clicked!")
@@ -37,7 +32,7 @@ export default function Home() {
     <button className="action" onClick={() => setCount(count + 1)}>
       Count: {count}
     </button>
-    <p>useMemo Result: <strong>{result}</strong></p>
+    <p>useMemo Result (count²): <strong>{result}</strong></p>
 
     <div className="card">
       <p><strong>useMemo Demo</strong></p>
