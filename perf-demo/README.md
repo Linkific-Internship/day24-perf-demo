@@ -1,16 +1,43 @@
-# React + Vite
+# React Performance Optimization Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Demo: https://perf-demo.netlify.app
 
-Currently, two official plugins are available:
+## What I Built
+A React app demonstrating core performance optimization techniques.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Techniques Implemented
 
-## React Compiler
+### 1. React.memo
+- Prevents unnecessary re-renders when props don't change
+- Demo: Click counter — Child component does not re-render
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. useMemo
+- Caches expensive calculation results
+- Demo: Type in input — calculation does not re-run
 
-## Expanding the ESLint configuration
+### 3. useCallback
+- Keeps function reference stable across renders
+- Demo: Unrelated state change does not re-render memo'd child
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 4. Code Splitting (React.lazy + Suspense)
+- Each page loads as separate JS chunk
+- Demo: Check Network tab — chunks load on demand
+
+### 5. Virtual List
+- 10,000 items — only 10 rows render in DOM at once
+- Built without external library using Intersection Observer logic
+
+### 6. Lazy Image Loading
+- Images load only when visible in viewport
+- Uses native loading="lazy" attribute
+
+## Tech Stack
+- React 18
+- Vite
+- Netlify (deployment)
+
+## Key Learnings
+- React.memo only helps when props are stable
+- useCallback is needed to make memo work with callbacks
+- Code splitting reduces initial bundle size
+- Virtualization is critical for large lists
